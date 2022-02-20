@@ -22,7 +22,7 @@ import (
 	"os"
 	"sync/atomic"
 
-	"github.com/digitalocean/go-libvirt/internal/constants"
+	"github.com/perimeter-81/go-libvirt/internal/constants"
 )
 
 var testDomainResponse = []byte{

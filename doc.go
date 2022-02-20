@@ -34,7 +34,7 @@
 		"net"
 		"time"
 
-		"github.com/digitalocean/go-libvirt"
+		"github.com/perimeter-81/go-libvirt"
 	)
 
 	func main() {

@@ -30,8 +30,8 @@ import (
 	"net"
 	"sync"
 
-	"github.com/digitalocean/go-libvirt/internal/constants"
-	xdr "github.com/digitalocean/go-libvirt/internal/go-xdr/xdr2"
+	"github.com/perimeter-81/go-libvirt/internal/constants"
+	xdr "github.com/perimeter-81/go-libvirt/internal/go-xdr/xdr2"
 )
 
 // ErrEventsNotSupported is returned by Events() if event streams

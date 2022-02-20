@@ -26,8 +26,8 @@ import (
 	"io"
 	"reflect"
 
-	"github.com/digitalocean/go-libvirt/internal/constants"
-	"github.com/digitalocean/go-libvirt/internal/go-xdr/xdr2"
+	"github.com/perimeter-81/go-libvirt/internal/constants"
+	"github.com/perimeter-81/go-libvirt/internal/go-xdr/xdr2"
 )
 
 const (

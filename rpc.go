@@ -24,8 +24,8 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"github.com/digitalocean/go-libvirt/internal/constants"
-	xdr "github.com/digitalocean/go-libvirt/internal/go-xdr/xdr2"
+	"github.com/perimeter-81/go-libvirt/internal/constants"
+	xdr "github.com/perimeter-81/go-libvirt/internal/go-xdr/xdr2"
 )
 
 // ErrUnsupported is returned if a procedure is not supported by libvirt
