@@ -16,8 +16,10 @@ package libvirt
 
 import (
 	"bytes"
+	"context"
 	"encoding/binary"
 	"errors"
+	"fmt"
 	"io"
 	"strings"
 	"sync/atomic"
@@ -469,9 +471,18 @@ func (l *Libvirt) sendPacket(serial uint32, proc uint32, program uint32, payload
 }
 
 func (l *Libvirt) getResponse(c chan response) (response, error) {
-	resp := <-c
-	if resp.Status == StatusError {
-		return resp, decodeError(resp.Payload)
+	var resp response
+
+	select {
+	case resp = <-c:
+		if resp.Status == StatusError {
+			return resp, decodeError(resp.Payload)
+		}
+	case <-l.ctx.Done():
+		reason := l.ctx.Err()
+		if errors.Is(reason, context.DeadlineExceeded) {
+			return resp, fmt.Errorf("timed out waiting for response")
+		}
 	}
 
 	return resp, nil

@@ -23,6 +23,7 @@ package libvirt
 import (
 	"bufio"
 	"bytes"
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -44,6 +45,7 @@ type event interface {
 
 // Libvirt implements libvirt's remote procedure call protocol.
 type Libvirt struct {
+	ctx  context.Context
 	conn net.Conn
 	r    *bufio.Reader
 	w    *bufio.Writer
@@ -535,8 +537,9 @@ func getQEMUError(r response) error {
 }
 
 // New configures a new Libvirt RPC connection.
-func New(conn net.Conn) *Libvirt {
+func New(ctx context.Context, conn net.Conn) *Libvirt {
 	l := &Libvirt{
+		ctx:       ctx,
 		conn:      conn,
 		s:         0,
 		r:         bufio.NewReader(conn),
