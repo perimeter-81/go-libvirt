@@ -134,6 +134,8 @@ func (l *Libvirt) Connect() error {
 // Disconnect shuts down communication with the libvirt server and closes the
 // underlying net.Conn.
 func (l *Libvirt) Disconnect() error {
+	defer l.conn.Close()
+
 	// close event streams
 	for id := range l.events {
 		if err := l.removeStream(id); err != nil {
@@ -150,7 +152,7 @@ func (l *Libvirt) Disconnect() error {
 		return err
 	}
 
-	return l.conn.Close()
+	return nil
 }
 
 // Domains returns a list of all domains managed by libvirt.
